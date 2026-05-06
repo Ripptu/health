@@ -14,8 +14,10 @@ import {
   Instagram, 
   Facebook,
   X,
-  ChevronRight
+  ChevronRight,
+  Briefcase
 } from 'lucide-react';
+import { TestimonialsColumn } from './components/ui/testimonials-columns-1';
 
 const LOGO_URL = "https://s1.directupload.eu/images/260505/96sqp84n.webp";
 
@@ -24,6 +26,7 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [legalModalContent, setLegalModalContent] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +65,7 @@ export default function App() {
       title: "SeniorenFit",
       subtitle: "",
       pitch: '"Aktiv im Leben stehen und sich wohlfühlen."',
-      desc: "Training bis ins hohe Alter. Verbesserung des eigenen Wohlbefindens steht im Fokus. Spezielle Angebote wie 'Rollator Geh Schule' und 'Parkinson Fit'.",
+      desc: "Unsere Seniorenkurse starten ab 60+ und sind anspruchsvoll, weil Training im Alter wirkt—wenn es richtig dosiert und an die Gruppe angepasst ist. Deshalb trainierst du je nach Bedarf auch mit Stehhilfe, oder mit Sitz bei Einschränkungen oder in ruhigeren Varianten.\n\nIm Kurs kombinieren wir: Bewegung, Koordination und Kraft, kognitive Übungen, Training zur Alltagsbewältigung und gezielte Sturzprophylaxe. Komm vorbei und sichere dir deinen Kursplatz—mit passendem Tempo und viel Motivation.",
       icon: <Users className="w-8 h-8" />
     },
     {
@@ -85,6 +88,13 @@ export default function App() {
       pitch: '"Ein verbessertes Selbst."',
       desc: "Erkennen von Stärken und Reduzierung von Schwachstellen. Tests, Übungen und Bewegungsroutinen zur Wiederherstellung natürlicher Bewegungen.",
       icon: <CheckCircle2 className="w-8 h-8" />
+    },
+    {
+      title: "Firmenfitness",
+      subtitle: "(B2B)",
+      pitch: '"Gesunde Mitarbeiter, starkes Unternehmen."',
+      desc: "Maßgeschneiderte Konzepte für die Gesundheit Ihres Teams. Verbessern Sie das Betriebsklima und reduzieren Sie Ausfallzeiten durch gezielte Prävention und Bewegung am Arbeitsplatz. Preis auf Anfrage.",
+      icon: <Briefcase className="w-8 h-8" />
     }
   ];
 
@@ -117,6 +127,19 @@ export default function App() {
       ]
     }
   ];
+
+  const testimonialsContent = [
+    { text: "Lisa hat mir geholfen, meine Rückenbeschwerden komplett in den Griff zu bekommen. Sehr professionelle Betreuung!", name: "Michael S.", role: "Personal Training" },
+    { text: "Der Ernährungsplan war super in meinen Alltag zu integrieren. Ich fühle mich viel fitter und energiereicher.", name: "Sarah K.", role: "Ernährungsberatung" },
+    { text: "Die Seniorenkurse machen so viel Spaß! Tolle Gruppe und eine Trainerin mit viel Herz und Verstand.", name: "Brigitte W.", role: "SeniorenFit" },
+    { text: "Mein Sohn liebt den Kindersport. Ganz ohne Leistungsdruck, dafür mit viel Freude an Bewegung.", name: "Thomas L.", role: "KinderFit" },
+    { text: "Endlich ein ganzheitlicher Ansatz, der Körper und Geist verbindet. Absolut empfehlenswert!", name: "Julia M.", role: "Holistisches Mentoring" },
+    { text: "Das Training hat meine Beweglichkeit enorm verbessert. Ich bin sehr dankbar.", name: "Andreas B.", role: "FaszienFit" },
+  ];
+
+  const firstColumn = testimonialsContent.slice(0, 2);
+  const secondColumn = testimonialsContent.slice(2, 4);
+  const thirdColumn = testimonialsContent.slice(4, 6);
 
   return (
     <div className="min-h-screen bg-[#050505] font-sans selection:bg-[#C5A059] selection:text-black relative overflow-x-hidden text-[#F5F5F0]">
@@ -222,9 +245,10 @@ export default function App() {
         
         {/* 2. Hero-Sektion */}
         <section className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center py-20 px-6 text-center" id="startseite">
-          {/* Herobild ohne starke Abdunkelung, nur ein feiner Verlauf ins Schwarze nach unten */}
-          <div className="absolute inset-0 bg-[url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260505_125133_a21e3c0b-5f45-4a32-976d-f6446bb467ac.png&w=1280&q=85')] bg-cover bg-top pointer-events-none [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] -z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] pointer-events-none -z-10" />
+          {/* Herobild abgedunkelt */}
+          <div className="absolute inset-0 bg-[url('https://s1.directupload.eu/images/260506/kbr44fbq.webp')] bg-cover bg-top pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] -z-10" />
+          <div className="absolute inset-0 bg-black/50 pointer-events-none -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/70 to-[#050505] pointer-events-none -z-10" />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -368,27 +392,52 @@ export default function App() {
                 </button>
               </motion.div>
 
-              {/* Item 5: FunctionalFit Wide */}
+              {/* Item 5: FunctionalFit */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="glass-card p-8 rounded-2xl flex flex-col md:flex-row gap-6 md:gap-12 items-center group md:col-span-4"
+                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2"
               >
-                <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors border border-white/5 shrink-0">
-                  <div className="gold-text">{services[4].icon}</div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors border border-white/5 shrink-0">
+                    <div className="gold-text">{services[4].icon}</div>
+                  </div>
+                  <div>
+                    <h3 className="font-serif italic text-2xl text-white mb-1">{services[4].title}</h3>
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-1">{services[4].subtitle}</p>
+                  </div>
                 </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="font-serif italic text-3xl md:text-4xl text-white mb-2">{services[4].title}</h3>
-                  <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-2">{services[4].subtitle} &bull; <span className="text-white/60 italic font-medium lowercase tracking-normal">{services[4].pitch}</span></p>
-                  <p className="text-sm text-white/50 leading-relaxed font-light">{services[4].desc}</p>
+                <div className="text-xs font-medium text-white/90 italic mb-4">{services[4].pitch}</div>
+                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[4].desc}</p>
+                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit">
+                  Jetzt anfragen <ChevronRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+
+              {/* Item 6: Firmenfitness */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2 bg-[#C5A059]/5 border-[#C5A059]/20"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 flex items-center justify-center group-hover:bg-[#C5A059]/30 transition-colors border border-[#C5A059]/20 shrink-0">
+                    <div className="gold-text">{services[5].icon}</div>
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-light uppercase tracking-widest text-xl text-white mb-1">{services[5].title}</h3>
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-1">{services[5].subtitle}</p>
+                  </div>
                 </div>
-                <div className="shrink-0">
-                  <button className="btn-gold-outline px-6 py-3 text-[10px] uppercase tracking-widest font-bold whitespace-nowrap rounded-full">
-                    Jetzt anfragen
-                  </button>
-                </div>
+                <div className="text-xs font-medium text-white/90 italic mb-4">{services[5].pitch}</div>
+                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[5].desc}</p>
+                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit">
+                  Anfrage stellen <ChevronRight className="w-4 h-4" />
+                </button>
               </motion.div>
 
             </div>
@@ -411,7 +460,7 @@ export default function App() {
                    <div className="w-full h-full rounded-t-[100px] rounded-bl-[100px] overflow-hidden">
                      {/* Placeholder for Expert Portrait */}
                      <img 
-                      src="https://static.wixstatic.com/media/6d59aa_2976d61e167d4145a163cbf4891d5d00~mv2.jpg/v1/fill/w_873,h_980,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6d59aa_2976d61e167d4145a163cbf4891d5d00~mv2.jpg" 
+                      src="https://mail.google.com/mail/u/1?ui=2&ik=16e4822ffa&attid=0.1.2&permmsgid=msg-f:1864418565738890039&th=19dfbeceb3828337&view=fimg&fur=ip&permmsgid=msg-f:1864418565738890039&sz=s0-l75-ft&attbid=ANGjdJ-lJzMz4N_Bj3xQIqZ8ddo4ase_73swMMWxGNH_CW8fJSC06sCQMmIy4UjTAINZuT1EWjkdSZK0WQfh0lvnKFjUbElB-RyNr1GyWeK10EeSfaXWFaZguadLWyw&disp=emb&zw" 
                       alt="Lisa Prochnow" 
                       className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                     />
@@ -589,6 +638,32 @@ export default function App() {
           </div>
         </section>
 
+        <section className="bg-transparent py-24 md:py-32 relative z-20 border-t border-white/5" id="bewertungen">
+          <div className="max-w-7xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <div className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] mb-4 font-bold">Erfahrungen</div>
+              <h2 className="text-4xl md:text-6xl text-white mb-4">
+                <span className="font-sans font-extrabold tracking-tight">Kunden</span><span className="font-serif italic text-white/70">stimmen</span>
+              </h2>
+              <p className="text-white/50 text-sm font-light max-w-xl mx-auto">
+                Erfahre was meine Kunden über unsere Zusammenarbeit sagen.
+              </p>
+            </motion.div>
+
+            <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[600px] overflow-hidden">
+              <TestimonialsColumn testimonials={firstColumn} duration={15} />
+              <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
+              <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+            </div>
+          </div>
+        </section>
+
         {/* 8. Kontakt & Formular */}
         <section className="py-24 md:py-32 relative z-20" id="kontakt">
           <div className="max-w-6xl mx-auto px-6">
@@ -681,9 +756,9 @@ export default function App() {
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             <div className="flex flex-col gap-4 text-center md:text-left">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/70">Rechtliches</span>
-              <a href="#" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Impressum</a>
-              <a href="#" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Datenschutz</a>
-              <a href="#" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">AGB</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('impressum'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Impressum</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('datenschutz'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Datenschutz</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('agb'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">AGB</a>
             </div>
             <div className="flex flex-col gap-4 text-center md:text-left">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/70">Social</span>
@@ -695,6 +770,76 @@ export default function App() {
 
         </div>
       </footer>
+      {/* Content wrapper end */}
+
+      {/* Legal Modal Overlay */}
+      <AnimatePresence>
+        {legalModalContent && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setLegalModalContent(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto relative"
+            >
+              <button 
+                onClick={() => setLegalModalContent(null)}
+                className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <h2 className="text-2xl font-serif italic text-white mb-6 uppercase tracking-wide">
+                {legalModalContent === 'impressum' && 'Impressum'}
+                {legalModalContent === 'datenschutz' && 'Datenschutzerklärung'}
+                {legalModalContent === 'agb' && 'Allgemeine Geschäftsbedingungen'}
+              </h2>
+              
+              <div className="text-white/60 text-sm font-light leading-relaxed space-y-4">
+                {legalModalContent === 'impressum' && (
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Angaben gemäß § 5 TMG</h3>
+                    <p>Lisa Prochnow<br/>Health & Body<br/>Musterstraße 1<br/>01445 Radebeul</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">Kontakt</h3>
+                    <p>Telefon: +49 (0) 123 44 55 66<br/>E-Mail: info@health-and-body.de</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">Umsatzsteuer-ID</h3>
+                    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br/>DE123456789</p>
+                  </div>
+                )}
+                
+                {legalModalContent === 'datenschutz' && (
+                  <div>
+                    <h3 className="text-white font-medium mb-2">1. Datenschutz auf einen Blick</h3>
+                    <p>Allgemeine Hinweise: Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">2. Datenerfassung auf dieser Website</h3>
+                    <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">3. Ihre Rechte</h3>
+                    <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</p>
+                  </div>
+                )}
+                
+                {legalModalContent === 'agb' && (
+                  <div>
+                    <h3 className="text-white font-medium mb-2">§1 Geltungsbereich</h3>
+                    <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die Teilnahme an Kursen, Personal Training und Ernährungsberatung von Health & Body - Lisa Prochnow.</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">§2 Anmeldung und Vertragsschluss</h3>
+                    <p>Die Anmeldung zu Kursen und Personal Training kann mündlich, schriftlich oder elektronisch erfolgen und ist verbindlich.</p>
+                    <h3 className="text-white font-medium mt-6 mb-2">§3 Zahlungsbedingungen</h3>
+                    <p>Die vereinbarten Honorare sind nach Leistungserbringung oder per Vorkasse (für 10er Karten o.ä.) fällig.</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
