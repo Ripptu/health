@@ -11,6 +11,7 @@ import {
   Mail, 
   MapPin, 
   Phone, 
+  Heart,
   Instagram, 
   Facebook,
   X,
@@ -27,6 +28,18 @@ export default function App() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [legalModalContent, setLegalModalContent] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState<{title: string, subtitle: string, pitch: string, desc: string, icon: any, image: string} | null>(null);
+
+  useEffect(() => {
+    if (isMobileMenuOpen || legalModalContent || selectedService) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen, legalModalContent, selectedService]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,43 +71,57 @@ export default function App() {
       title: "Ernährungsberatung",
       subtitle: "(ErnährungsFit)",
       pitch: '"Nicht nur Brokkoli und Huhn."',
-      desc: "Individuelle Konzepte statt Standard-Internetpläne. Analyse von Aktivität und Körperzusammensetzung. Strukturierte Planung von Nährstoffen passend zum Grundumsatz.",
-      icon: <Leaf className="w-8 h-8" />
+      desc: "Alle wollen gut aussehen oder Muskeln aufbauen, Fett verlieren, leistungsstark oder gesund erscheinen. Doch was ist für Sie wichtig und richtig? Welche Ernährungsform, Taktung und Zusammenstellung macht für Sie Sinn, um Ihr Ziel zu erreichen?\n\nMeine Pläne setzen genau an dieser Fragestellung an und sind genauso individuell wie Ihre eigenen Antworten darauf. Wenn Sie bereit sind, diesen Schritt zu gehen, werden Sie bereits in kürzester Zeit Resultate spüren und auch sehen.",
+      icon: <Leaf className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "SeniorenFit",
       subtitle: "",
       pitch: '"Aktiv im Leben stehen und sich wohlfühlen."',
-      desc: "Unsere Seniorenkurse starten ab 60+ und sind anspruchsvoll, weil Training im Alter wirkt—wenn es richtig dosiert und an die Gruppe angepasst ist. Deshalb trainierst du je nach Bedarf auch mit Stehhilfe, oder mit Sitz bei Einschränkungen oder in ruhigeren Varianten.\n\nIm Kurs kombinieren wir: Bewegung, Koordination und Kraft, kognitive Übungen, Training zur Alltagsbewältigung und gezielte Sturzprophylaxe. Komm vorbei und sichere dir deinen Kursplatz—mit passendem Tempo und viel Motivation.",
-      icon: <Users className="w-8 h-8" />
+      desc: "Bei Gesundheit und Fitness geht es nicht nur darum, wie der Körper aussieht, sondern auch wie man sich fühlt!\n\nAuch das Training bis ins hohe Alter ist möglich, wobei eine Förderung und Verbesserung des eigenen Wohlbefindens im Hauptfokus steht. Ich garantiere, dass auch hierbei der Spaß nicht zu kurz kommt. Worauf warten Sie noch? Buchen Sie Ihr Training noch heute!",
+      icon: <Users className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "KinderFit & Kindersport",
       subtitle: "(6 bis 12 Jahre)",
-      pitch: "Präventionskonzept gegen Bewegungsmangel.",
-      desc: "Kein Leistungs- oder Wettkampfdruck. Spaß an der Bewegung, Schulung motorischer und psychosozialer Kompetenzen. Ohne Benachteiligungen.",
-      icon: <Activity className="w-8 h-8" />
+      pitch: '"Angebot zur freien Entfaltung."',
+      desc: "Der Alltag der Kinder besteht heute zu großen Teilen aus Schule... Immer weniger Kinder sind im Vereinssport aktiv. Engagierte Eltern suchen verstärkt nach einem Bewegungskonzept ohne Leistungsdruck. Hier setzt das Präventionskonzept an: Spaß an der Bewegung sowie Übungen zur Schulung motorischer Kompetenzen im Mittelpunkt. Jedes Kind wird individuell gefördert. (Zertifizierter Präventionskurs)",
+      icon: <Activity className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1514068574489-503a8eb91592?auto=format&fit=crop&q=80&w=800"
     },
     {
-      title: "Yoga-Pilates-Mix & FaszienFit",
+      title: "Yoga-Pilates-Mix",
       subtitle: "",
       pitch: '"Konzentration - Stärkung - Mobilität."',
-      desc: "Ganzheitliches Training für Körper & Geist, Fokus auf Bauch-/Rückenmuskulatur. Plus FaszienFit für Stärke und Ausdauer bei gesteigerter Mobilität.",
-      icon: <Brain className="w-8 h-8" />
+      desc: "Dieses Kurskonzept bildet ein ganzheitliches Training für Körper & Geist. Es ist für Anfänger mit dem Interesse und Schwerpunkt der Bewegungskunst Yoga und Pilates geeignet.\n\nDer Fokus liegt auf der Stärkung der Bauch- und Rückenmuskulatur sowie der Fokussierung und Zentralisierung des eigenen Ich. Es ist in seiner Intensität bezüglich der Verbesserung des Zusammenspiels von Muskulatur und Gelenken jedoch nicht zu unterschätzen.",
+      icon: <Brain className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      title: "FaszienFit & Mobility",
+      subtitle: "",
+      pitch: '"Stärke und Ausdauer bei gesteigerter Mobilität."',
+      desc: "In diesem Kurs sprichst du dein fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nDu lernst, neue Dehnreize richtig zu setzen, deine Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das dein System herausfordert und dein Bewegungsmuster langfristig unterstützt.",
+      icon: <Heart className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "FunctionalFit",
       subtitle: "(Personal Training)",
       pitch: '"Ein verbessertes Selbst."',
-      desc: "Erkennen von Stärken und Reduzierung von Schwachstellen. Tests, Übungen und Bewegungsroutinen zur Wiederherstellung natürlicher Bewegungen.",
-      icon: <CheckCircle2 className="w-8 h-8" />
+      desc: "Das Hauptaugenmerk meines Kurses hier liegt darin, dass Kursteilnehmer ihre Stärken aber auch bestehende Schwachstellen erkennen und erlernen, wie diese nachhaltig reduziert werden können.\nIch werde Sie hier durch die Umsetzung verschiedener Tests, Übungen und Bewegungsroutinen schulen, um natürliche, funktionelle Bewegungen wiederherzustellen, zu erhalten, bzw. zu optimieren.",
+      icon: <CheckCircle2 className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Firmenfitness",
       subtitle: "(B2B)",
       pitch: '"Gesunde Mitarbeiter, starkes Unternehmen."',
       desc: "Maßgeschneiderte Konzepte für die Gesundheit Ihres Teams. Verbessern Sie das Betriebsklima und reduzieren Sie Ausfallzeiten durch gezielte Prävention und Bewegung am Arbeitsplatz. Preis auf Anfrage.",
-      icon: <Briefcase className="w-8 h-8" />
+      icon: <Briefcase className="w-8 h-8" />,
+      image: "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
@@ -129,12 +156,12 @@ export default function App() {
   ];
 
   const testimonialsContent = [
+    { text: "Vielen lieben Dank für dein Engagement. Ich habe mich sehr wohl und verstanden gefühlt. Danke für den Plan und deine Zeit. Ich komme auf jeden Fall noch mal wieder. Deine schöne positive Ausstrahlung färbt schon jetzt ab. Danke danke", name: "N. Schilwat", role: "Ernährungsberatung & Training" },
+    { text: "Ich habe mich von Lisa über 3 Monate coachen lassen, mit dem Ziel den Stoffwechsel wieder anzukurbeln und Fett zu reduzieren und Muskeln aufzubauen. Sie hat einen auf meine Bedürfnisse angepassten Ernährungs- und Sportplan erstellt und wir haben feste Termine vereinbart um regelmäßig die Entwicklung zu überprüfen... Ich danke Dir vielmals dafür :)", name: "M. Reuter", role: "Coaching" },
+    { text: "Liebe Lisa, der Kurs gefällt mir sehr gut!! Ich merke dass ich schon beweglicher geworden bin, nach der Trainingsstunde mit dir fühle ich mich \"schwerelos\", ein tolles Gefühl. Besonders gefällt mir dass du ganz individuell auf uns eingehst uns uns bei Problemchen gut und kompetent berätst. Mach weiter so, ich komme sehr gern.", name: "P. Gallasch", role: "Kursmitglied" },
     { text: "Lisa hat mir geholfen, meine Rückenbeschwerden komplett in den Griff zu bekommen. Sehr professionelle Betreuung!", name: "Michael S.", role: "Personal Training" },
-    { text: "Der Ernährungsplan war super in meinen Alltag zu integrieren. Ich fühle mich viel fitter und energiereicher.", name: "Sarah K.", role: "Ernährungsberatung" },
     { text: "Die Seniorenkurse machen so viel Spaß! Tolle Gruppe und eine Trainerin mit viel Herz und Verstand.", name: "Brigitte W.", role: "SeniorenFit" },
     { text: "Mein Sohn liebt den Kindersport. Ganz ohne Leistungsdruck, dafür mit viel Freude an Bewegung.", name: "Thomas L.", role: "KinderFit" },
-    { text: "Endlich ein ganzheitlicher Ansatz, der Körper und Geist verbindet. Absolut empfehlenswert!", name: "Julia M.", role: "Holistisches Mentoring" },
-    { text: "Das Training hat meine Beweglichkeit enorm verbessert. Ich bin sehr dankbar.", name: "Andreas B.", role: "FaszienFit" },
   ];
 
   const firstColumn = testimonialsContent.slice(0, 2);
@@ -246,9 +273,9 @@ export default function App() {
         {/* 2. Hero-Sektion */}
         <section className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center py-20 px-6 text-center" id="startseite">
           {/* Herobild abgedunkelt */}
-          <div className="absolute inset-0 bg-[url('https://s1.directupload.eu/images/260506/kbr44fbq.webp')] bg-cover bg-top pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] -z-10" />
-          <div className="absolute inset-0 bg-black/50 pointer-events-none -z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/70 to-[#050505] pointer-events-none -z-10" />
+          <div className="absolute inset-0 bg-[url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260507_134859_d2c8fb26-ee5a-4c90-b2f7-cf03a18343e6.png&w=1280&q=85')] bg-cover bg-top pointer-events-none [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] -z-10" />
+          <div className="absolute inset-0 bg-black/20 pointer-events-none -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] pointer-events-none -z-10" />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -256,10 +283,10 @@ export default function App() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl mx-auto relative z-10 flex flex-col items-center mt-12"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-7xl leading-[1.1] mb-8">
-              <span className="font-sans font-extrabold tracking-tight text-white block mb-2">Dein Weg zu einem gesunden</span>
-              <span className="font-serif italic text-[#C5A059] pr-4">Körper & Geist</span> 
-              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-lg md:text-xl block mt-6">in Radebeul</span>
+            <h1 className="mb-8 flex flex-col">
+              <span className="font-sans font-bold text-[41px] leading-[19.1px] tracking-tight text-white block mb-4 mt-6">Dein Weg zu einem gesunden</span>
+              <span className="font-serif italic text-[#C5A059] text-[69px] leading-[40.2px] text-center block pr-4">Körper & Geist</span> 
+              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-lg md:text-xl block mt-8">in Radebeul</span>
             </h1>
             
             <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-12 font-light px-6 py-2">
@@ -332,7 +359,10 @@ export default function App() {
                 <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-4 relative z-10">{services[0].subtitle}</p>
                 <div className="text-xs md:text-sm font-medium text-white/90 italic mb-4 relative z-10">{services[0].pitch}</div>
                 <p className="text-sm text-white/50 leading-relaxed font-light mb-8 flex-1 relative z-10">{services[0].desc}</p>
-                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit relative z-10">
+                <button 
+                  onClick={() => setSelectedService(services[0])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit relative z-10"
+                >
                   Mehr erfahren <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
@@ -355,6 +385,12 @@ export default function App() {
                 </div>
                 <div className="text-xs font-medium text-white/80 italic mb-3">{services[1].pitch}</div>
                 <p className="text-xs text-white/50 leading-relaxed font-light flex-1">{services[1].desc}</p>
+                <button 
+                  onClick={() => setSelectedService(services[1])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-4 font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
+                </button>
               </motion.div>
 
               {/* Item 3: KinderFit */}
@@ -370,8 +406,11 @@ export default function App() {
                 </div>
                 <h3 className="font-serif italic text-2xl text-white mb-2">{services[2].title}</h3>
                 <div className="text-[10px] font-medium text-white/60 mb-4 h-8">{services[2].pitch}</div>
-                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit">
-                  <ChevronRight className="w-4 h-4" />
+                <button 
+                  onClick={() => setSelectedService(services[2])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
 
@@ -387,18 +426,21 @@ export default function App() {
                   <div className="gold-text">{services[3].icon}</div>
                 </div>
                 <h3 className="font-sans font-light uppercase tracking-widest text-lg md:text-xl text-white mb-4 leading-tight">{services[3].title.replace(' & ', ' &\n')}</h3>
-                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit">
-                  <ChevronRight className="w-4 h-4" />
+                <button 
+                  onClick={() => setSelectedService(services[3])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
 
-              {/* Item 5: FunctionalFit */}
+              {/* Item 5: FaszienFit */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2"
+                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2 bg-[#C5A059]/5 border-[#C5A059]/10"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors border border-white/5 shrink-0">
@@ -411,32 +453,65 @@ export default function App() {
                 </div>
                 <div className="text-xs font-medium text-white/90 italic mb-4">{services[4].pitch}</div>
                 <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[4].desc}</p>
-                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit">
-                  Jetzt anfragen <ChevronRight className="w-4 h-4" />
+                <button 
+                  onClick={() => setSelectedService(services[4])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
 
-              {/* Item 6: Firmenfitness */}
+              {/* Item 6: FunctionalFit */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2 bg-[#C5A059]/5 border-[#C5A059]/20"
+                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-2"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 flex items-center justify-center group-hover:bg-[#C5A059]/30 transition-colors border border-[#C5A059]/20 shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors border border-white/5 shrink-0">
                     <div className="gold-text">{services[5].icon}</div>
                   </div>
                   <div>
-                    <h3 className="font-sans font-light uppercase tracking-widest text-xl text-white mb-1">{services[5].title}</h3>
+                    <h3 className="font-serif italic text-2xl text-white mb-1">{services[5].title}</h3>
                     <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-1">{services[5].subtitle}</p>
                   </div>
                 </div>
                 <div className="text-xs font-medium text-white/90 italic mb-4">{services[5].pitch}</div>
                 <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[5].desc}</p>
-                <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit">
-                  Anfrage stellen <ChevronRight className="w-4 h-4" />
+                <button 
+                  onClick={() => setSelectedService(services[5])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+
+              {/* Item 7: Firmenfitness */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="glass-card p-8 rounded-2xl flex flex-col group md:col-span-4 lg:col-span-2 lg:col-start-2 bg-[#C5A059]/5 border-[#C5A059]/20"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 flex items-center justify-center group-hover:bg-[#C5A059]/30 transition-colors border border-[#C5A059]/20 shrink-0">
+                    <div className="gold-text">{services[6].icon}</div>
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-light uppercase tracking-widest text-xl text-white mb-1">{services[6].title}</h3>
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-1">{services[6].subtitle}</p>
+                  </div>
+                </div>
+                <div className="text-xs font-medium text-white/90 italic mb-4">{services[6].pitch}</div>
+                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[6].desc}</p>
+                <button 
+                  onClick={() => setSelectedService(services[6])}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
+                >
+                  Mehr erfahren <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
 
@@ -487,8 +562,24 @@ export default function App() {
                 
                 <div className="space-y-6 text-white/60 text-sm font-light leading-relaxed mb-10">
                   <p>
-                    <strong className="text-white font-medium block mb-1">Qualifikationen:</strong>
-                    Sportökonomin, Ernährungsberaterin und zertifizierte Trainerin für diverse Gesundheits- und Präventivprogramme. Mit über 10 Jahren in der Sport- und Gesundheitsbranche bringe ich fundierte Expertise mit.
+                    <strong className="text-white font-medium block mb-3">Qualifikationen:</strong>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Bachelor of Fitnessökonomie</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Gesundheitstrainer</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Trainer für Sportrehabilitation</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Ernährungstrainerin</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Trainerin für Krafttraining</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Trainerin für Cardiotraining</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Senioren Fitness Trainer</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Kindertrainer</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Faszientraining</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Functional Movement Training</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Rückentrainer</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Autogenes Training</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Bellicon Jumping Fitness</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> TRX Yoga</li>
+                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Grouptrainer & Stepaerobic</li>
+                    </ul>
                   </p>
                   <p>
                     <strong className="text-white font-medium block mb-1">Zielgruppen:</strong>
@@ -567,72 +658,69 @@ export default function App() {
 
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                
-               {/* Erwachsene */}
+               {/* Kurse */}
                <div className="glass-card p-8 border-t-4 border-t-[#C5A059] flex flex-col h-full relative">
-                 <div className="serif text-3xl text-white mb-8">Erwachsene</div>
+                 <div className="serif text-2xl uppercase tracking-widest text-[#C5A059] mb-8 font-light text-center md:text-left">KURSE</div>
                  <div className="flex-1 space-y-4 text-sm mb-10">
                    <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Personal Training (1h)</span>
-                     <span className="gold-text font-serif text-lg">85 €</span>
+                     <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">KURS 10 EINHEITEN</span>
+                     <span className="gold-text font-serif italic text-lg text-right">€140</span>
                    </div>
                    <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Kurs Yoga Mix</span>
-                     <span className="gold-text font-serif text-lg">130 €</span>
+                     <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">ONLINE-LIVE-KURSE 10 EINHEITEN</span>
+                     <span className="gold-text font-serif italic text-lg text-right">€120</span>
                    </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Kurs Faszien Training</span>
-                     <span className="gold-text font-serif text-lg">130 €</span>
-                   </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Tape Anlage</span>
-                     <span className="gold-text font-serif text-lg">20 €</span>
+                   <div className="flex flex-col border-b border-white/5 pb-3">
+                     <div className="flex justify-between">
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">KK-KURS 10 EINHEITEN</span>
+                       <span className="gold-text font-serif italic text-lg text-right">€145</span>
+                     </div>
+                     <span className="text-white/40 uppercase tracking-widest text-[10px] mt-1">(ERSTATTUNGSFÄHIG)</span>
                    </div>
                  </div>
                  <button className="btn-gold-outline w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Jetzt Buchen</button>
                </div>
 
-               {/* Senioren */}
-               <div className="glass-card p-8 border-t-4 border-t-[#8A9A5B] flex flex-col h-full relative">
-                 <div className="serif text-3xl text-white mb-8">Senioren</div>
+               {/* Individuell / Training */}
+               <div className="glass-card p-8 border-t-4 border-t-white/30 flex flex-col h-full relative">
+                 <div className="serif text-2xl uppercase tracking-widest text-white/80 mb-8 font-light text-center md:text-left">INDIVIDUELL/ TRAINING</div>
                  <div className="flex-1 space-y-4 text-sm mb-10">
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Senioren Kraft (10x)</span>
-                     <span className="text-[#8A9A5B] font-serif text-lg">120 €</span>
+                   <div className="flex flex-col border-b border-white/5 pb-3">
+                     <div className="flex justify-between">
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">PERSONALTRAINING - 60 MIN</span>
+                       <span className="text-white font-serif italic text-lg text-right">€140</span>
+                     </div>
                    </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Mobility Kurs</span>
-                     <span className="text-[#8A9A5B] font-serif text-lg">130 €</span>
-                   </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Rollator Geh Schule</span>
-                     <span className="text-[#8A9A5B] font-serif text-lg">125 €</span>
+                   <div className="flex flex-col border-b border-white/5 pb-3">
+                     <div className="flex justify-between">
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold flex-1 pr-4 leading-relaxed mt-1">ANALYSE/ ANAMNESE +<br/>ERNÄHRUNGSBERATUNG-<br/>90 MIN</span>
+                       <span className="text-white font-serif italic text-lg text-right mt-1">€190</span>
+                     </div>
                    </div>
                  </div>
-                 <button className="border border-[#8A9A5B] text-[#8A9A5B] hover:bg-[#8A9A5B] hover:text-black transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Anfragen</button>
+                 <button className="border border-white/30 text-white/80 hover:bg-white hover:text-black transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Anfragen</button>
                </div>
 
-               {/* Kinder */}
-               <div className="glass-card p-8 border-t-4 border-t-white/30 flex flex-col h-full relative">
-                 <div className="serif text-3xl text-white mb-8">Kinder</div>
+               {/* Gruppen / Firmen */}
+               <div className="glass-card p-8 border-t-4 border-t-white/10 flex flex-col h-full relative">
+                 <div className="serif text-2xl uppercase tracking-widest text-white/60 mb-8 font-light text-center md:text-left">GRUPPEN/FIRMEN</div>
                  <div className="flex-1 space-y-4 text-sm mb-10">
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Kurs Kinder Sport (1,5h)</span>
-                     <span className="text-white font-serif text-lg">50 €</span>
+                   <div className="flex flex-col border-b border-white/5 pb-3">
+                     <div className="flex justify-between">
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">KURS VOR ORT</span>
+                       <span className="text-white font-serif italic text-lg text-right">€190</span>
+                     </div>
+                     <span className="text-white/40 uppercase tracking-widest text-[10px] mt-1">(SCHWERPUNKT FREI<br/>WÄHLBAR)</span>
                    </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Kurs Kinder Fit</span>
-                     <span className="text-white font-serif text-lg">35 €</span>
-                   </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">10er Karte Kinder Fit</span>
-                     <span className="text-white font-serif text-lg">99 €</span>
-                   </div>
-                   <div className="flex justify-between border-b border-white/5 pb-3">
-                     <span className="text-white/70">Personal Training Kinder</span>
-                     <span className="text-white font-serif text-lg">45 €</span>
+                   <div className="flex flex-col border-b border-white/5 pb-3">
+                     <div className="flex justify-between">
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold self-center">GRUPPENTRAINING</span>
+                       <span className="text-white font-serif italic text-lg text-right">€150</span>
+                     </div>
+                     <span className="text-white/40 uppercase tracking-widest text-[10px] mt-1">(AUCH OUTDOOR)</span>
                    </div>
                  </div>
-                 <button className="border border-white/30 text-white/80 hover:bg-white hover:text-black transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Jetzt Buchen</button>
+                 <button className="border border-white/10 text-white/60 hover:bg-white/10 hover:text-white transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Jetzt Buchen</button>
                </div>
              </div>
           </div>
@@ -771,6 +859,70 @@ export default function App() {
         </div>
       </footer>
       {/* Content wrapper end */}
+
+      {/* Service Modal Overlay */}
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+            onClick={() => setSelectedService(null)}
+          >
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-[#111] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto overflow-x-hidden relative glass-card shadow-2xl flex flex-col md:flex-row"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedService(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center text-white/50 hover:text-white transition-colors"
+                aria-label="Schließen"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                <img 
+                  src={selectedService.image} 
+                  alt={selectedService.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#111] via-transparent to-transparent pointer-events-none" />
+              </div>
+
+              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-[#C5A059]/10 flex items-center justify-center border border-[#C5A059]/20 shrink-0">
+                    <div className="gold-text">{selectedService.icon}</div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-serif italic text-white mb-1 leading-tight">{selectedService.title}</h2>
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold">{selectedService.subtitle}</p>
+                  </div>
+                </div>
+
+                <div className="text-sm font-medium text-white/90 italic mb-6 pl-4 border-l-2 border-[#C5A059]">{selectedService.pitch}</div>
+                
+                <div className="text-white/60 text-sm font-light leading-relaxed space-y-4 mb-8 whitespace-pre-wrap">
+                  {selectedService.desc}
+                </div>
+
+                <a 
+                  href="#kontakt"
+                  onClick={() => setSelectedService(null)}
+                  className="btn-gold block text-center w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto"
+                >
+                  Jetzt anfragen
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Legal Modal Overlay */}
       <AnimatePresence>
