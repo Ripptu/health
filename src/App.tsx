@@ -16,7 +16,8 @@ import {
   Facebook,
   X,
   ChevronRight,
-  Briefcase
+  Briefcase,
+  MessageCircle
 } from 'lucide-react';
 import { TestimonialsColumn } from './components/ui/testimonials-columns-1';
 
@@ -701,7 +702,7 @@ export default function App() {
                      <span className="text-white/40 uppercase tracking-widest text-[10px] mt-1">(ERSTATTUNGSFÄHIG)</span>
                    </div>
                  </div>
-                 <button className="btn-gold-outline w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Jetzt Buchen</button>
+                 <a href="#kontakt" className="btn-gold-outline w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto block text-center cursor-pointer">Jetzt Buchen</a>
                </div>
 
                {/* Individuell / Training */}
@@ -721,7 +722,7 @@ export default function App() {
                      </div>
                    </div>
                  </div>
-                 <button className="border border-white/30 text-white/80 hover:bg-white hover:text-black transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Anfragen</button>
+                 <a href="#kontakt" className="border border-white/30 text-white/80 hover:bg-white hover:text-black transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto block text-center cursor-pointer">Anfragen</a>
                </div>
 
                {/* Gruppen / Firmen */}
@@ -743,7 +744,7 @@ export default function App() {
                      <span className="text-white/40 uppercase tracking-widest text-[10px] mt-1">(AUCH OUTDOOR)</span>
                    </div>
                  </div>
-                 <button className="border border-white/10 text-white/60 hover:bg-white/10 hover:text-white transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto">Jetzt Buchen</button>
+                 <a href="#kontakt" className="border border-white/10 text-white/60 hover:bg-white/10 hover:text-white transition-colors w-full py-4 text-[10px] font-bold uppercase tracking-widest mt-auto block text-center cursor-pointer">Jetzt Buchen</a>
                </div>
              </div>
           </div>
@@ -809,6 +810,21 @@ export default function App() {
                       <a href="tel:+4915785513538" className="text-white/80 hover:text-[#C5A059] transition-colors text-lg">+49 157 85513538</a>
                     </div>
                   </div>
+
+                  <motion.a 
+                    href="https://wa.me/4915785513538" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center justify-center gap-3 w-full py-5 px-6 font-bold text-white bg-[#25D366] hover:bg-[#128C7E] transition-colors"
+                  >
+                    <MessageCircle className="w-5 h-5 animate-pulse" />
+                    <span className="tracking-widest uppercase text-xs">Jetzt per WhatsApp kontaktieren</span>
+                  </motion.a>
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 glass-card rounded-full flex items-center justify-center shrink-0">
@@ -879,6 +895,12 @@ export default function App() {
             </div>
           </div>
 
+        </div>
+        
+        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-center flex flex-col items-center justify-center">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">
+            Website erstellt von <a href="https://vamela.info" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#C5A059] transition-colors font-bold">Vamela</a>
+          </p>
         </div>
       </footer>
       {/* Content wrapper end */}
