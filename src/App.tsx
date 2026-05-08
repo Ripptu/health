@@ -66,6 +66,11 @@ export default function App() {
 
   const navLinks = ['Startseite', 'Über mich', 'Leistungen', 'Kursplan', 'Preise', 'Kontakt'];
 
+  const getLinkHref = (link: string) => {
+    if (link === 'Über mich') return '#ueber-mich';
+    return `#${link.toLowerCase()}`;
+  };
+
   const services = [
     {
       title: "Ernährungsberatung",
@@ -79,9 +84,9 @@ export default function App() {
       title: "SeniorenFit",
       subtitle: "",
       pitch: '"Aktiv im Leben stehen und sich wohlfühlen."',
-      desc: "Bei Gesundheit und Fitness geht es nicht nur darum, wie der Körper aussieht, sondern auch wie man sich fühlt!\n\nAuch das Training bis ins hohe Alter ist möglich, wobei eine Förderung und Verbesserung des eigenen Wohlbefindens im Hauptfokus steht. Ich garantiere, dass auch hierbei der Spaß nicht zu kurz kommt. Worauf warten Sie noch? Buchen Sie Ihr Training noch heute!",
+      desc: "Bei Gesundheit und Fitness geht es nicht nur darum, wie der Körper aussieht, sondern auch wie man sich fühlt! Auch das Training bis ins hohe Alter ist möglich, wobei eine Förderung und Verbesserung des eigenen Wohlbefindens im Hauptfokus steht. Dieser Kurs ist speziell für Menschen ab ca. 60 Jahren, die darauf abzielen, Kraft, Mobilität, Koordination und Gleichgewicht zu verbessern. Die Inhalte umfassen altersgerechte Gymnastik, Sturzprophylaxe, Herz-Kreislauf-Training und Übungen zur Steigerung der Selbstständigkeit im Alltag. Ich garantiere, dass auch hierbei der Spaß nicht zu kurz kommt. Worauf warten Sie noch? Buchen Sie Ihr Training noch heute!",
       icon: <Users className="w-8 h-8" />,
-      image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800"
+      image: "https://s1.directupload.eu/images/260508/ghrud6mf.jpg"
     },
     {
       title: "KinderFit & Kindersport",
@@ -89,7 +94,7 @@ export default function App() {
       pitch: '"Angebot zur freien Entfaltung."',
       desc: "Der Alltag der Kinder besteht heute zu großen Teilen aus Schule... Immer weniger Kinder sind im Vereinssport aktiv. Engagierte Eltern suchen verstärkt nach einem Bewegungskonzept ohne Leistungsdruck. Hier setzt das Präventionskonzept an: Spaß an der Bewegung sowie Übungen zur Schulung motorischer Kompetenzen im Mittelpunkt. Jedes Kind wird individuell gefördert. (Zertifizierter Präventionskurs)",
       icon: <Activity className="w-8 h-8" />,
-      image: "https://images.unsplash.com/photo-1514068574489-503a8eb91592?auto=format&fit=crop&q=80&w=800"
+      image: "https://s1.directupload.eu/images/260508/2vay8i5a.jpg"
     },
     {
       title: "Yoga-Pilates-Mix",
@@ -103,9 +108,9 @@ export default function App() {
       title: "FaszienFit & Mobility",
       subtitle: "",
       pitch: '"Stärke und Ausdauer bei gesteigerter Mobilität."',
-      desc: "In diesem Kurs sprichst du dein fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nDu lernst, neue Dehnreize richtig zu setzen, deine Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das dein System herausfordert und dein Bewegungsmuster langfristig unterstützt.",
+      desc: "In diesem Kurs sprichst du dein fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nDu lernst, neue Dehnreize richtig zu setzen, deine Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das dein System heraufgefordert und dein Bewegungsmuster langfristig unterstützt.",
       icon: <Heart className="w-8 h-8" />,
-      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80&w=800"
+      image: "https://s1.directupload.eu/images/260508/zqa24uyo.jpg"
     },
     {
       title: "FunctionalFit",
@@ -113,7 +118,7 @@ export default function App() {
       pitch: '"Ein verbessertes Selbst."',
       desc: "Das Hauptaugenmerk meines Kurses hier liegt darin, dass Kursteilnehmer ihre Stärken aber auch bestehende Schwachstellen erkennen und erlernen, wie diese nachhaltig reduziert werden können.\nIch werde Sie hier durch die Umsetzung verschiedener Tests, Übungen und Bewegungsroutinen schulen, um natürliche, funktionelle Bewegungen wiederherzustellen, zu erhalten, bzw. zu optimieren.",
       icon: <CheckCircle2 className="w-8 h-8" />,
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800"
+      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Firmenfitness",
@@ -156,17 +161,13 @@ export default function App() {
   ];
 
   const testimonialsContent = [
-    { text: "Vielen lieben Dank für dein Engagement. Ich habe mich sehr wohl und verstanden gefühlt. Danke für den Plan und deine Zeit. Ich komme auf jeden Fall noch mal wieder. Deine schöne positive Ausstrahlung färbt schon jetzt ab. Danke danke", name: "N. Schilwat", role: "Ernährungsberatung & Training" },
-    { text: "Ich habe mich von Lisa über 3 Monate coachen lassen, mit dem Ziel den Stoffwechsel wieder anzukurbeln und Fett zu reduzieren und Muskeln aufzubauen. Sie hat einen auf meine Bedürfnisse angepassten Ernährungs- und Sportplan erstellt und wir haben feste Termine vereinbart um regelmäßig die Entwicklung zu überprüfen... Ich danke Dir vielmals dafür :)", name: "M. Reuter", role: "Coaching" },
-    { text: "Liebe Lisa, der Kurs gefällt mir sehr gut!! Ich merke dass ich schon beweglicher geworden bin, nach der Trainingsstunde mit dir fühle ich mich \"schwerelos\", ein tolles Gefühl. Besonders gefällt mir dass du ganz individuell auf uns eingehst uns uns bei Problemchen gut und kompetent berätst. Mach weiter so, ich komme sehr gern.", name: "P. Gallasch", role: "Kursmitglied" },
-    { text: "Lisa hat mir geholfen, meine Rückenbeschwerden komplett in den Griff zu bekommen. Sehr professionelle Betreuung!", name: "Michael S.", role: "Personal Training" },
-    { text: "Die Seniorenkurse machen so viel Spaß! Tolle Gruppe und eine Trainerin mit viel Herz und Verstand.", name: "Brigitte W.", role: "SeniorenFit" },
-    { text: "Mein Sohn liebt den Kindersport. Ganz ohne Leistungsdruck, dafür mit viel Freude an Bewegung.", name: "Thomas L.", role: "KinderFit" },
+    { text: "Vielen lieben Dank für dein Engagement. Ich habe mich sehr wohl und verstanden gefühlt. Danke für den Plan und deine Zeit. Ich komme auf jeden Fall noch mal wieder. Deine schöne positive Ausstrahlung färbt schon jetzt ab. Danke danke", name: "Nadine", role: "Kundenbewertung" },
+    { text: "Liebe Lisa, der Kurs gefällt mir sehr gut!! Ich merke dass ich schon beweglicher geworden bin, nach der Trainingsstunde mit dir fühle ich mich \"schwerelos\", ein tolles Gefühl. Besonders gefällt mir dass du ganz individuell auf uns eingehst uns uns bei Problemchen gut und kompetent berätst. Mach weiter so, ich komme sehr gern. Liebe Grüße Petra", name: "Petra", role: "Kursmitglied" },
   ];
 
-  const firstColumn = testimonialsContent.slice(0, 2);
-  const secondColumn = testimonialsContent.slice(2, 4);
-  const thirdColumn = testimonialsContent.slice(4, 6);
+  const firstColumn = testimonialsContent.slice(0, 1);
+  const secondColumn = testimonialsContent.slice(1, 2);
+  const thirdColumn: any[] = [];
 
   return (
     <div className="min-h-screen bg-[#050505] font-sans selection:bg-[#C5A059] selection:text-black relative overflow-x-hidden text-[#F5F5F0]">
@@ -185,16 +186,16 @@ export default function App() {
           
           <div className="hidden lg:flex items-center justify-center flex-1 gap-8 text-[11px] uppercase tracking-[0.15em] font-medium text-white/70">
             {navLinks.map((link) => (
-              <a key={link} href={`#${link.toLowerCase()}`} className="hover:text-white transition-colors">
+              <a key={link} href={getLinkHref(link)} className="hover:text-white transition-colors">
                 {link}
               </a>
             ))}
           </div>
 
           <div className="hidden lg:flex justify-end w-64">
-            <button className="btn-gold-solid px-6 py-2.5 text-[10px] uppercase tracking-widest font-bold">
+            <a href="#kontakt" className="btn-gold-solid px-6 py-2.5 text-[10px] uppercase tracking-widest font-bold">
               Jetzt Termin buchen
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -232,7 +233,7 @@ export default function App() {
                 {navLinks.map((link, idx) => (
                   <motion.a 
                     key={link} 
-                    href={`#${link.toLowerCase()}`} 
+                    href={getLinkHref(link)} 
                     onClick={() => setIsMobileMenuOpen(false)}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -259,9 +260,9 @@ export default function App() {
                   </a>
                 </div>
                 
-                <button className="btn-gold-solid px-10 py-4 w-full max-w-xs text-xs uppercase tracking-[0.25em] font-bold">
+                <a href="#kontakt" className="btn-gold-solid px-10 py-4 w-full max-w-xs text-xs uppercase tracking-[0.25em] font-bold text-center">
                   Termin buchen
-                </button>
+                </a>
               </motion.div>
             </motion.div>
           )}
@@ -293,30 +294,40 @@ export default function App() {
               Ganzheitliche Prävention, Ernährungsberatung & Personal Training mit Lisa Prochnow.
             </p>
             
-            <button className="btn-gold-solid px-12 py-5 rounded-none text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase transition-transform hover:scale-105">
+            <a href="#kontakt" className="btn-gold-solid px-12 py-5 rounded-none text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase transition-transform hover:scale-105">
               Kostenloses Erstgespräch sichern
-            </button>
+            </a>
           </motion.div>
         </section>
 
         {/* 3. Trust- & Statistik-Leiste */}
         <section className="py-12 relative z-20 border-y border-white/5 bg-white/[0.02]">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-              <div className="py-4 md:py-0 pt-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-white/10">
+              <div className="py-4 md:py-0 border-r border-white/10 md:border-r-0">
                 <div className="serif text-4xl lg:text-5xl gold-text mb-2 text-glow">10+</div>
                 <div className="text-[10px] uppercase tracking-widest text-white/50">Jahre Erfahrung</div>
               </div>
-              <div className="py-4 md:py-0 flex flex-col items-center justify-center">
+              <div className="py-4 md:py-0 flex flex-col items-center justify-center border-r-0 md:border-x md:border-white/10">
                 <ShieldCheck className="w-8 h-8 gold-text mb-3" strokeWidth={1} />
                 <div className="text-[10px] uppercase tracking-widest text-white/80 leading-relaxed font-bold">
                   Zertifizierte Sportökonomin <br/>& Ernährungsberaterin
                 </div>
               </div>
-              <div className="py-4 md:py-0 pb-0 flex flex-col items-center justify-center">
+              <div className="py-4 md:py-0 flex flex-col items-center justify-center border-r border-white/10 md:border-r md:border-white/10">
                 <CheckCircle2 className="w-8 h-8 gold-text mb-3" strokeWidth={1} />
                 <div className="text-[10px] uppercase tracking-widest text-white/80 leading-relaxed font-bold">
                   100% Individuelle & <br/>Ganzheitliche Betreuung
+                </div>
+              </div>
+              <div className="py-4 md:py-0 flex flex-col items-center justify-center">
+                <img 
+                  src="https://s1.directupload.eu/images/260508/ed97v58f.png" 
+                  alt="AOK Zertifikat" 
+                  className="h-12 md:h-14 object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                />
+                <div className="text-[9px] uppercase tracking-widest text-white/40 mt-3 text-center">
+                  Zertifizierte Prävention & <br/>Krankenkassen-Zertifizierung
                 </div>
               </div>
             </div>
@@ -520,7 +531,7 @@ export default function App() {
         </section>
 
         {/* 5. Über mich-Sektion */}
-        <section className="py-24 bg-white/[0.02] border-y border-white/5 relative z-20" id="über mich">
+        <section className="py-24 bg-white/[0.02] border-y border-white/5 relative z-20" id="ueber-mich">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               
@@ -535,7 +546,7 @@ export default function App() {
                    <div className="w-full h-full rounded-t-[100px] rounded-bl-[100px] overflow-hidden">
                      {/* Placeholder for Expert Portrait */}
                      <img 
-                      src="https://mail.google.com/mail/u/1?ui=2&ik=16e4822ffa&attid=0.1.2&permmsgid=msg-f:1864418565738890039&th=19dfbeceb3828337&view=fimg&fur=ip&permmsgid=msg-f:1864418565738890039&sz=s0-l75-ft&attbid=ANGjdJ-lJzMz4N_Bj3xQIqZ8ddo4ase_73swMMWxGNH_CW8fJSC06sCQMmIy4UjTAINZuT1EWjkdSZK0WQfh0lvnKFjUbElB-RyNr1GyWeK10EeSfaXWFaZguadLWyw&disp=emb&zw" 
+                      src="https://s1.directupload.eu/images/260508/sivi3x4a.jpg" 
                       alt="Lisa Prochnow" 
                       className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                     />
@@ -557,11 +568,16 @@ export default function App() {
                 <div className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] mb-4 font-bold">Die Expertin</div>
                 <h2 className="text-4xl md:text-5xl text-white mb-8 leading-[1.1]">
                   <span className="font-sans font-extrabold tracking-tight">Lisa Prochnow</span><br/>
-                  <span className="font-serif italic text-white/70 tracking-normal pr-3">Expertin für Gesundheit</span>
+                  <span className="font-serif italic text-white/70 tracking-normal pr-3">Expertin für Fitness & Gesundheit</span>
                 </h2>
                 
+                <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-[#C5A059]/10 border border-[#C5A059]/20 rounded-full">
+                  <CheckCircle2 className="w-4 h-4 gold-text" />
+                  <span className="text-[10px] uppercase tracking-widest gold-text font-bold">Krankenkassenzertifizierte Kurstrainerin</span>
+                </div>
+                
                 <div className="space-y-6 text-white/60 text-sm font-light leading-relaxed mb-10">
-                  <p>
+                  <div>
                     <strong className="text-white font-medium block mb-3">Qualifikationen:</strong>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Bachelor of Fitnessökonomie</li>
@@ -580,20 +596,20 @@ export default function App() {
                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> TRX Yoga</li>
                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#C5A059] rounded-full" /> Grouptrainer & Stepaerobic</li>
                     </ul>
-                  </p>
+                  </div>
                   <p>
                     <strong className="text-white font-medium block mb-1">Zielgruppen:</strong>
-                    Kinder (ab Kindergartenalter), Senioren, körperlich/geistig eingeschränkte Menschen sowie Kooperationen mit Krankenkassen, Schulen, Vereinen und Pflegeheimen.
+                    Kinder (ab Kindergartenalter), Senioren, körperlich eingeschränkte Menschen sowie Kooperationen mit Krankenkassen, Schulen, Vereinen und Pflegeheimen.
                   </p>
-                  <p>
+                  <p id="philosophie">
                     <strong className="text-white font-medium block mb-1">Philosophie:</strong>
                     Im Zentrum meiner Arbeit steht immer die <span className="gold-text italic">Individualität</span>. Jeder Mensch bringt eigene Voraussetzungen, Fähigkeiten und Ziele mit. Mein Ziel für dich ist es, physisch und geistig voranzukommen und mental zu wachsen.
                   </p>
                 </div>
 
-                <button className="btn-gold-outline w-fit px-8 py-4 text-[10px] font-bold tracking-widest uppercase">
-                  Mehr über meine Philosophie
-                </button>
+                <a href="#kontakt" className="btn-gold-outline w-fit px-8 py-4 text-[10px] font-bold tracking-widest uppercase text-center">
+                  Jetzt Kontakt aufnehmen
+                </a>
               </motion.div>
 
             </div>
