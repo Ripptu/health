@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { CookieBanner } from './components/CookieBanner';
+import Impressum from './pages/Impressum';
+import Datenschutz from './pages/Datenschutz';
+import AGB from './pages/AGB';
 import { 
   Menu, 
   Leaf, 
@@ -23,16 +28,30 @@ import { TestimonialsColumn } from './components/ui/testimonials-columns-1';
 
 const LOGO_URL = "https://s1.directupload.eu/images/260505/96sqp84n.webp";
 
-export default function App() {
+function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [legalModalContent, setLegalModalContent] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<{title: string, subtitle: string, pitch: string, desc: string, icon: any, image: string} | null>(null);
 
+  const location = useLocation();
+
   useEffect(() => {
-    if (isMobileMenuOpen || legalModalContent || selectedService) {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen || selectedService) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -40,7 +59,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isMobileMenuOpen, legalModalContent, selectedService]);
+  }, [isMobileMenuOpen, selectedService]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,8 +87,8 @@ export default function App() {
   const navLinks = ['Startseite', 'Über mich', 'Leistungen', 'Kursplan', 'Preise', 'Kontakt'];
 
   const getLinkHref = (link: string) => {
-    if (link === 'Über mich') return '#ueber-mich';
-    return `#${link.toLowerCase()}`;
+    if (link === 'Über mich') return '/#ueber-mich';
+    return `/#${link.toLowerCase()}`;
   };
 
   const services = [
@@ -883,9 +902,9 @@ export default function App() {
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             <div className="flex flex-col gap-4 text-center md:text-left">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/70">Rechtliches</span>
-              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('impressum'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Impressum</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('datenschutz'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Datenschutz</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); setLegalModalContent('agb'); }} className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">AGB</a>
+              <Link to="/impressum" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Impressum</Link>
+              <Link to="/datenschutz" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">Datenschutz</Link>
+              <Link to="/agb" className="text-xs text-white/40 hover:text-[#C5A059] transition-colors">AGB</Link>
             </div>
             <div className="flex flex-col gap-4 text-center md:text-left">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/70">Social</span>
@@ -969,74 +988,20 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Legal Modal Overlay */}
-      <AnimatePresence>
-        {legalModalContent && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setLegalModalContent(null)}
-          >
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto relative"
-            >
-              <button 
-                onClick={() => setLegalModalContent(null)}
-                className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              <h2 className="text-2xl font-serif italic text-white mb-6 uppercase tracking-wide">
-                {legalModalContent === 'impressum' && 'Impressum'}
-                {legalModalContent === 'datenschutz' && 'Datenschutzerklärung'}
-                {legalModalContent === 'agb' && 'Allgemeine Geschäftsbedingungen'}
-              </h2>
-              
-              <div className="text-white/60 text-sm font-light leading-relaxed space-y-4">
-                {legalModalContent === 'impressum' && (
-                  <div>
-                    <h3 className="text-white font-medium mb-2">Angaben gemäß § 5 TMG</h3>
-                    <p>Lisa Prochnow<br/>Health & Body<br/>Musterstraße 1<br/>01445 Radebeul</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">Kontakt</h3>
-                    <p>Telefon: +49 (0) 123 44 55 66<br/>E-Mail: info@health-and-body.de</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">Umsatzsteuer-ID</h3>
-                    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br/>DE123456789</p>
-                  </div>
-                )}
-                
-                {legalModalContent === 'datenschutz' && (
-                  <div>
-                    <h3 className="text-white font-medium mb-2">1. Datenschutz auf einen Blick</h3>
-                    <p>Allgemeine Hinweise: Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">2. Datenerfassung auf dieser Website</h3>
-                    <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">3. Ihre Rechte</h3>
-                    <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</p>
-                  </div>
-                )}
-                
-                {legalModalContent === 'agb' && (
-                  <div>
-                    <h3 className="text-white font-medium mb-2">§1 Geltungsbereich</h3>
-                    <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die Teilnahme an Kursen, Personal Training und Ernährungsberatung von Health & Body - Lisa Prochnow.</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">§2 Anmeldung und Vertragsschluss</h3>
-                    <p>Die Anmeldung zu Kursen und Personal Training kann mündlich, schriftlich oder elektronisch erfolgen und ist verbindlich.</p>
-                    <h3 className="text-white font-medium mt-6 mb-2">§3 Zahlungsbedingungen</h3>
-                    <p>Die vereinbarten Honorare sind nach Leistungserbringung oder per Vorkasse (für 10er Karten o.ä.) fällig.</p>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <CookieBanner />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/datenschutz" element={<Datenschutz />} />
+        <Route path="/agb" element={<AGB />} />
+      </Routes>
+    </Router>
   );
 }
