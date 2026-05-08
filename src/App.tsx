@@ -141,21 +141,17 @@ export default function App() {
     {
       day: "Mittwoch",
       classes: [
-        { time: "09:00 - 10:00 Uhr", name: "SeniorenFit (eingeschränkt)" }
+        { time: "09:30 - 10:30 Uhr", name: "SeniorenFit (eingeschränkt)" }
       ]
     },
     {
       day: "Donnerstag",
-      classes: [
-        { time: "18:00 Uhr", name: "FaszienFit" },
-        { time: "19:00 Uhr", name: "Yoga-Mix" }
-      ]
+      classes: []
     },
     {
       day: "Freitag",
       classes: [
-        { time: "08:30 - 09:30 Uhr", name: "SeniorenFit" },
-        { time: "14:30 - 15:30 Uhr", name: "Parkinson Fit" }
+        { time: "08:30 - 09:30 Uhr", name: "SeniorenFit (eingeschränkt)" }
       ]
     }
   ];
@@ -567,8 +563,8 @@ export default function App() {
               >
                 <div className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] mb-4 font-bold">Die Expertin</div>
                 <h2 className="text-4xl md:text-5xl text-white mb-8 leading-[1.1]">
-                  <span className="font-sans font-extrabold tracking-tight">Lisa Prochnow</span><br/>
-                  <span className="font-serif italic text-white/70 tracking-normal pr-3">Expertin für Fitness & Gesundheit</span>
+                  <span className="font-sans font-extrabold tracking-tight leading-[48.8px]">Lisa Prochnow</span><br/>
+                  <span className="font-serif italic text-white/70 tracking-normal pr-3 text-[34px] md:text-[34px] leading-[52.8px] block">Expertin für Fitness & Gesundheit</span>
                 </h2>
                 
                 <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-[#C5A059]/10 border border-[#C5A059]/20 rounded-full">
@@ -626,23 +622,34 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-               <h2 className="text-4xl md:text-6xl text-white mb-4">
-                <span className="font-sans font-extrabold tracking-tight">Aktueller</span> <span className="font-serif italic text-[#C5A059]">Kursplan</span>
+               <h2 className="text-4xl md:text-5xl lg:text-6xl text-white mb-6">
+                <span className="font-sans font-extrabold tracking-tight">Aktuelles Kursangebot</span> <span className="font-serif italic text-white/70 block md:inline mt-2 md:mt-0 md:pl-3">und Termine</span>
               </h2>
-              <p className="text-white/50 text-sm font-light max-w-xl mx-auto">Verschaffe dir einen Überblick über unsere wöchentlichen Routinen und Angebote in Radebeul & Dresden.</p>
+              <p className="text-[#C5A059] text-xl font-bold uppercase tracking-widest max-w-xl mx-auto mb-6">Radebeul und Dresden</p>
+              <p className="text-white/80 text-base font-light max-w-2xl mx-auto leading-relaxed">
+                Du bekommst nicht nur ein Training &ndash; du bekommst Struktur, Begleitung und den Fortschritt, der zu deinem Alltag passt.
+              </p>
             </motion.div>
+
+            <div className="text-center mb-12">
+              <h3 className="serif text-3xl gold-text text-glow inline-block pb-3 border-b border-white/20">01445 Radebeul Ost:</h3>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {schedule.map((dayPlan, idx) => (
                 <div key={idx} className="glass-card p-8 rounded-lg">
                   <h3 className="serif text-2xl gold-text mb-6 border-b border-white/10 pb-4 inline-block w-full">{dayPlan.day}</h3>
                   <div className="space-y-4">
-                    {dayPlan.classes.map((cls, classIdx) => (
-                      <div key={classIdx} className="flex justify-between items-start group">
-                        <div className="text-white/80 group-hover:text-white transition-colors">{cls.name}</div>
-                        <div className="text-[11px] font-mono text-white/40 pt-1 shrink-0 ml-4">{cls.time}</div>
-                      </div>
-                    ))}
+                    {dayPlan.classes.length > 0 ? (
+                      dayPlan.classes.map((cls, classIdx) => (
+                        <div key={classIdx} className="flex justify-between items-start group">
+                          <div className="text-white/80 group-hover:text-white transition-colors">{cls.name}</div>
+                          <div className="text-[11px] font-mono text-white/40 pt-1 shrink-0 ml-4">{cls.time}</div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-white/40 italic">Derzeit keine Kurse an diesem Tag.</div>
+                    )}
                   </div>
                 </div>
               ))}
