@@ -128,7 +128,7 @@ function Home() {
       title: "FaszienFit & Mobility",
       subtitle: "",
       pitch: '"Stärke und Ausdauer bei gesteigerter Mobilität."',
-      desc: "In diesem Kurs sprichst du dein fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nDu lernst, neue Dehnreize richtig zu setzen, deine Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das dein System heraufgefordert und dein Bewegungsmuster langfristig unterstützt.",
+      desc: "In diesem Kurs sprechen Sie Ihr fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nSie lernen, neue Dehnreize richtig zu setzen, Ihre Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das Ihr System heraufgefordert und Ihr Bewegungsmuster langfristig unterstützt.",
       icon: <Heart className="w-8 h-8" />,
       image: "https://s1.directupload.eu/images/260508/zqa24uyo.jpg"
     },
@@ -177,8 +177,8 @@ function Home() {
   ];
 
   const testimonialsContent = [
-    { text: "Vielen lieben Dank für dein Engagement. Ich habe mich sehr wohl und verstanden gefühlt. Danke für den Plan und deine Zeit. Ich komme auf jeden Fall noch mal wieder. Deine schöne positive Ausstrahlung färbt schon jetzt ab. Danke danke", name: "Nadine", role: "Kundenbewertung" },
-    { text: "Liebe Lisa, der Kurs gefällt mir sehr gut!! Ich merke dass ich schon beweglicher geworden bin, nach der Trainingsstunde mit dir fühle ich mich \"schwerelos\", ein tolles Gefühl. Besonders gefällt mir dass du ganz individuell auf uns eingehst uns uns bei Problemchen gut und kompetent berätst. Mach weiter so, ich komme sehr gern. Liebe Grüße Petra", name: "Petra", role: "Kursmitglied" },
+    { text: "Vielen lieben Dank für Ihr Engagement. Ich habe mich sehr wohl und verstanden gefühlt. Danke für den Plan und Ihre Zeit. Ich komme auf jeden Fall noch mal wieder. Ihre schöne positive Ausstrahlung färbt schon jetzt ab. Danke.", name: "Nadine", role: "Kundenbewertung" },
+    { text: "Liebe Frau Prochnow, der Kurs gefällt mir sehr gut!! Ich merke, dass ich schon beweglicher geworden bin. Nach der Trainingsstunde mit Ihnen fühle ich mich 'schwerelos' – ein tolles Gefühl. Besonders gefällt mir, dass Sie ganz individuell auf uns eingehen und uns bei Anliegen kompetent beraten. Ich komme sehr gerne wieder. Beste Grüße Petra", name: "Petra", role: "Kursmitglied" },
   ];
 
   const firstColumn = testimonialsContent.slice(0, 1);
@@ -301,9 +301,9 @@ function Home() {
             className="max-w-4xl mx-auto relative z-10 flex flex-col items-center mt-12"
           >
             <h1 className="mb-8 flex flex-col">
-              <span className="font-sans font-bold text-[41px] leading-[19.1px] tracking-tight text-white block mb-4 mt-6">Dein Weg zu einem gesunden</span>
-              <span className="font-serif italic text-[#C5A059] text-[69px] leading-[40.2px] text-center block pr-4">Körper & Geist</span> 
-              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-lg md:text-xl block mt-8">in Radebeul</span>
+              <span className="font-sans font-bold text-[32px] md:text-[41px] leading-tight tracking-tight text-white block mb-4 mt-6">Ihr Weg zu einem gesunden</span>
+              <span className="font-serif italic text-[#C5A059] text-[42px] md:text-[69px] leading-[1.1] text-center block pr-4">Körper & Geist</span> 
+              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-sm md:text-xl block mt-8">in Radebeul</span>
             </h1>
             
             <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-12 font-light px-6 py-2">
@@ -326,13 +326,13 @@ function Home() {
               </div>
               <div className="py-4 md:py-0 flex flex-col items-center justify-center border-r-0 md:border-x md:border-white/10">
                 <ShieldCheck className="w-8 h-8 gold-text mb-3" strokeWidth={1} />
-                <div className="text-[10px] uppercase tracking-widest text-white/80 leading-relaxed font-bold">
+                <div className="text-[10px] uppercase tracking-widest text-white/80 font-bold">
                   Zertifizierte Sportökonomin <br/>& Ernährungsberaterin
                 </div>
               </div>
               <div className="py-4 md:py-0 flex flex-col items-center justify-center border-r border-white/10 md:border-r md:border-white/10">
                 <CheckCircle2 className="w-8 h-8 gold-text mb-3" strokeWidth={1} />
-                <div className="text-[10px] uppercase tracking-widest text-white/80 leading-relaxed font-bold">
+                <div className="text-[10px] uppercase tracking-widest text-white/80 font-bold">
                   100% Individuelle & <br/>Ganzheitliche Betreuung
                 </div>
               </div>
@@ -382,9 +382,9 @@ function Home() {
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#C5A059]/20 transition-colors border border-white/5 relative z-10">
                   <div className="gold-text">{services[0].icon}</div>
                 </div>
-                <h3 className="font-serif italic text-3xl md:text-4xl text-white mb-2 relative z-10">{services[0].title}</h3>
+                <h3 className="font-serif italic text-3xl md:text-4xl text-white mb-2 relative z-10 leading-tight">{services[0].title}</h3>
                 <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-4 relative z-10">{services[0].subtitle}</p>
-                <div className="text-xs md:text-sm font-medium text-white/90 italic mb-4 relative z-10">{services[0].pitch}</div>
+                <div className="text-xs md:text-sm font-medium text-white/90 italic mb-4 relative z-10 leading-relaxed">{services[0].pitch}</div>
                 <p className="text-sm text-white/50 leading-relaxed font-light mb-8 flex-1 relative z-10">{services[0].desc}</p>
                 <button 
                   onClick={() => setSelectedService(services[0])}
@@ -411,7 +411,7 @@ function Home() {
                    </div>
                 </div>
                 <div className="text-xs font-medium text-white/80 italic mb-3">{services[1].pitch}</div>
-                <p className="text-xs text-white/50 leading-relaxed font-light flex-1">{services[1].desc}</p>
+                <p className="text-xs text-white/50 font-light flex-1">{services[1].desc}</p>
                 <button 
                   onClick={() => setSelectedService(services[1])}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-4 font-bold w-fit"
@@ -452,7 +452,7 @@ function Home() {
                 <div className="w-12 h-12 rounded-full bg-[#C5A059]/10 flex items-center justify-center mb-6 group-hover:bg-[#C5A059]/30 transition-colors border border-[#C5A059]/20">
                   <div className="gold-text">{services[3].icon}</div>
                 </div>
-                <h3 className="font-sans font-light uppercase tracking-widest text-lg md:text-xl text-white mb-4 leading-tight">{services[3].title.replace(' & ', ' &\n')}</h3>
+                <h3 className="font-sans font-light uppercase tracking-widest text-lg md:text-xl text-white mb-4 text-balance">{services[3].title.replace(' & ', ' &\n')}</h3>
                 <button 
                   onClick={() => setSelectedService(services[3])}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-auto font-bold w-fit"
@@ -479,7 +479,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="text-xs font-medium text-white/90 italic mb-4">{services[4].pitch}</div>
-                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[4].desc}</p>
+                <p className="text-sm text-white/50 font-light flex-1">{services[4].desc}</p>
                 <button 
                   onClick={() => setSelectedService(services[4])}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
@@ -506,7 +506,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="text-xs font-medium text-white/90 italic mb-4">{services[5].pitch}</div>
-                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[5].desc}</p>
+                <p className="text-sm text-white/50 font-light flex-1">{services[5].desc}</p>
                 <button 
                   onClick={() => setSelectedService(services[5])}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
@@ -533,7 +533,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="text-xs font-medium text-white/90 italic mb-4">{services[6].pitch}</div>
-                <p className="text-sm text-white/50 leading-relaxed font-light flex-1">{services[6].desc}</p>
+                <p className="text-sm text-white/50 font-light flex-1">{services[6].desc}</p>
                 <button 
                   onClick={() => setSelectedService(services[6])}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-widest gold-text group-hover:text-white transition-colors mt-8 font-bold w-fit"
@@ -582,9 +582,9 @@ function Home() {
                 className="flex flex-col justify-center"
               >
                 <div className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] mb-4 font-bold">Die Expertin</div>
-                <h2 className="text-4xl md:text-5xl text-white mb-8 leading-[1.1]">
-                  <span className="font-sans font-extrabold tracking-tight leading-[48.8px]">Lisa Prochnow</span><br/>
-                  <span className="font-serif italic text-white/70 tracking-normal pr-3 text-[34px] md:text-[34px] leading-[52.8px] block">Expertin für Fitness & Gesundheit</span>
+                <h2 className="text-3xl md:text-5xl text-white mb-8 leading-tight">
+                  <span className="font-sans font-extrabold tracking-tight">Lisa Prochnow</span><br/>
+                  <span className="font-serif italic text-white/70 tracking-normal pr-3 text-[24px] md:text-[34px] leading-tight block">Expertin für Fitness & Gesundheit</span>
                 </h2>
                 
                 <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-[#C5A059]/10 border border-[#C5A059]/20 rounded-full">
@@ -619,7 +619,7 @@ function Home() {
                   </p>
                   <p id="philosophie">
                     <strong className="text-white font-medium block mb-1">Philosophie:</strong>
-                    Im Zentrum meiner Arbeit steht immer die <span className="gold-text italic">Individualität</span>. Jeder Mensch bringt eigene Voraussetzungen, Fähigkeiten und Ziele mit. Mein Ziel für dich ist es, physisch und geistig voranzukommen und mental zu wachsen.
+                    Im Zentrum meiner Arbeit steht immer die <span className="gold-text italic">Individualität</span>. Jeder Mensch bringt eigene Voraussetzungen, Fähigkeiten und Ziele mit. Mein Ziel für Sie ist es, physisch und geistig voranzukommen und mental zu wachsen.
                   </p>
                 </div>
 
@@ -642,12 +642,12 @@ function Home() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-               <h2 className="text-4xl md:text-5xl lg:text-6xl text-white mb-6">
+               <h2 className="text-3xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
                 <span className="font-sans font-extrabold tracking-tight">Aktuelles Kursangebot</span> <span className="font-serif italic text-white/70 block md:inline mt-2 md:mt-0 md:pl-3">und Termine</span>
               </h2>
               <p className="text-[#C5A059] text-xl font-bold uppercase tracking-widest max-w-xl mx-auto mb-6">Radebeul und Dresden</p>
               <p className="text-white/80 text-base font-light max-w-2xl mx-auto leading-relaxed">
-                Du bekommst nicht nur ein Training &ndash; du bekommst Struktur, Begleitung und den Fortschritt, der zu deinem Alltag passt.
+                Sie bekommen nicht nur ein Training &ndash; Sie bekommen Struktur, Begleitung und den Fortschritt, der zu Ihrem Alltag passt.
               </p>
             </motion.div>
 
@@ -694,7 +694,7 @@ function Home() {
                className="text-center mb-16"
              >
                <h2 className="text-4xl md:text-6xl text-white mb-4">
-                 <span className="font-sans font-extrabold tracking-tight">Investition</span> <span className="font-serif italic text-[#C5A059]">in dich</span>
+                 <span className="font-sans font-extrabold tracking-tight">Investition</span> <span className="font-serif italic text-[#C5A059]">in Sie</span>
                </h2>
                <p className="text-white/50 text-sm font-light max-w-xl mx-auto">Kompakte Preisübersichten für unsere Kernbereiche.</p>
              </motion.div>
@@ -736,7 +736,7 @@ function Home() {
                    </div>
                    <div className="flex flex-col border-b border-white/5 pb-3">
                      <div className="flex justify-between">
-                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold flex-1 pr-4 leading-relaxed mt-1">ANALYSE/ ANAMNESE +<br/>ERNÄHRUNGSBERATUNG-<br/>90 MIN</span>
+                       <span className="text-white/70 uppercase tracking-widest text-[10px] font-bold flex-1 pr-4 mt-1">ANALYSE/ ANAMNESE +<br/>ERNÄHRUNGSBERATUNG-<br/>90 MIN</span>
                        <span className="text-white font-serif italic text-lg text-right mt-1">€190</span>
                      </div>
                    </div>
@@ -783,7 +783,7 @@ function Home() {
                 <span className="font-sans font-extrabold tracking-tight">Kunden</span><span className="font-serif italic text-white/70">stimmen</span>
               </h2>
               <p className="text-white/50 text-sm font-light max-w-xl mx-auto">
-                Erfahre was meine Kunden über unsere Zusammenarbeit sagen.
+                Erfahren Sie, was meine Kunden über unsere Zusammenarbeit sagen.
               </p>
             </motion.div>
 
@@ -802,11 +802,11 @@ function Home() {
               
               {/* Kontakt Info */}
               <div>
-                <h2 className="text-4xl md:text-6xl text-white mb-6">
-                  <span className="font-serif italic text-[#C5A059] pr-3">Lass uns</span><br className="md:hidden" /> <span className="font-sans font-extrabold tracking-tight">starten.</span>
+                <h2 className="text-4xl md:text-6xl text-white mb-6 leading-tight">
+                  <span className="font-serif italic text-[#C5A059] pr-3">Lassen Sie uns</span><br className="md:hidden" /> <span className="font-sans font-extrabold tracking-tight">starten.</span>
                 </h2>
                 <p className="text-white/50 text-sm font-light leading-relaxed mb-10 max-w-md">
-                  Bereit für eine Veränderung? Melde dich für ein unverbindliches Erstgespräch. Ich freue mich auf deine Nachricht.
+                  Bereit für eine Veränderung? Melden Sie sich für ein unverbindliches Erstgespräch. Ich freue mich auf Ihre Nachricht.
                 </p>
 
                 <div className="space-y-8">
@@ -851,7 +851,7 @@ function Home() {
                     </div>
                     <div className="pt-1">
                       <div className="text-[10px] uppercase tracking-widest text-white/40 mb-1 font-bold">Standorte</div>
-                      <div className="text-white/80 text-lg leading-relaxed">
+                      <div className="text-white/80 text-lg">
                         Radebeul (01445) <br/>& Dresden
                       </div>
                     </div>
@@ -864,11 +864,11 @@ function Home() {
                 <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Dein Name</label>
+                       <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Ihr Name</label>
                        <input type="text" className="w-full bg-black/40 border border-white/10 p-4 rounded text-sm focus:border-[#C5A059] focus:bg-black/60 outline-none text-white transition-all" placeholder="Max Mustermann" />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Deine E-Mail</label>
+                       <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Ihre E-Mail</label>
                        <input type="email" className="w-full bg-black/40 border border-white/10 p-4 rounded text-sm focus:border-[#C5A059] focus:bg-black/60 outline-none text-white transition-all" placeholder="mail@beispiel.de" />
                     </div>
                   </div>
@@ -877,8 +877,8 @@ function Home() {
                      <input type="text" className="w-full bg-black/40 border border-white/10 p-4 rounded text-sm focus:border-[#C5A059] focus:bg-black/60 outline-none text-white transition-all" placeholder="Anfrage Personaltraining" />
                   </div>
                   <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Deine Nachricht</label>
-                     <textarea rows={5} className="w-full bg-black/40 border border-white/10 p-4 rounded text-sm focus:border-[#C5A059] focus:bg-black/60 outline-none text-white transition-all resize-none" placeholder="Wie kann ich dir helfen?"></textarea>
+                     <label className="text-[10px] uppercase tracking-widest text-white/50 pl-1 font-medium">Ihre Nachricht</label>
+                     <textarea rows={5} className="w-full bg-black/40 border border-white/10 p-4 rounded text-sm focus:border-[#C5A059] focus:bg-black/60 outline-none text-white transition-all resize-none" placeholder="Wie kann ich Ihnen helfen?"></textarea>
                   </div>
                   <button type="button" className="btn-gold-solid w-full py-4 text-xs font-bold uppercase tracking-widest mt-4">Nachricht Senden</button>
                 </form>
@@ -964,14 +964,14 @@ function Home() {
                     <div className="gold-text">{selectedService.icon}</div>
                   </div>
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-serif italic text-white mb-1 leading-tight">{selectedService.title}</h2>
+                    <h2 className="text-2xl md:text-3xl font-serif italic text-white mb-1">{selectedService.title}</h2>
                     <p className="font-sans text-[10px] uppercase tracking-widest text-[#C5A059] font-bold">{selectedService.subtitle}</p>
                   </div>
                 </div>
 
                 <div className="text-sm font-medium text-white/90 italic mb-6 pl-4 border-l-2 border-[#C5A059]">{selectedService.pitch}</div>
                 
-                <div className="text-white/60 text-sm font-light leading-relaxed space-y-4 mb-8 whitespace-pre-wrap">
+                <div className="text-white/60 text-sm font-light space-y-4 mb-8 whitespace-pre-wrap">
                   {selectedService.desc}
                 </div>
 
