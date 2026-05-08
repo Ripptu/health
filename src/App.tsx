@@ -562,7 +562,7 @@ function Home() {
                    <div className="w-full h-full rounded-t-[100px] rounded-bl-[100px] overflow-hidden">
                      {/* Placeholder for Expert Portrait */}
                      <img 
-                      src="https://s1.directupload.eu/images/260508/sivi3x4a.jpg" 
+                      src="https://s1.directupload.eu/images/260508/84zex44f.jpg" 
                       alt="Lisa Prochnow" 
                       className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                     />
