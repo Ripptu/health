@@ -102,7 +102,7 @@ function Home() {
     },
     {
       title: "SeniorenFit",
-      subtitle: "",
+      subtitle: "Seniorensport Radebeul Dresden",
       pitch: '"Aktiv im Leben stehen und sich wohlfühlen."',
       desc: "Bei Gesundheit und Fitness geht es nicht nur darum, wie der Körper aussieht, sondern auch wie man sich fühlt! Auch das Training bis ins hohe Alter ist möglich, wobei eine Förderung und Verbesserung des eigenen Wohlbefindens im Hauptfokus steht. Dieser Kurs ist speziell für Menschen ab ca. 60 Jahren, die darauf abzielen, Kraft, Mobilität, Koordination und Gleichgewicht zu verbessern. Die Inhalte umfassen altersgerechte Gymnastik, Sturzprophylaxe, Herz-Kreislauf-Training und Übungen zur Steigerung der Selbstständigkeit im Alltag. Ich garantiere, dass auch hierbei der Spaß nicht zu kurz kommt. Worauf warten Sie noch? Buchen Sie Ihr Training noch heute!",
       icon: <Users className="w-8 h-8" />,
@@ -126,7 +126,7 @@ function Home() {
     },
     {
       title: "FaszienFit & Mobility",
-      subtitle: "",
+      subtitle: "Faszientraining Radebeul Dresden",
       pitch: '"Stärke und Ausdauer bei gesteigerter Mobilität."',
       desc: "In diesem Kurs sprechen Sie Ihr fasziales Netzwerk gezielt an – mit ruhigen, bewussten Prinzipien ebenso wie mit kraftvollen Bewegungsimpulsen. Gemeinsam arbeiten wir an den myofaszialen Ketten, damit sich Bewegung in ihrer Qualität verändert.\n\nSie lernen, neue Dehnreize richtig zu setzen, Ihre Körperwahrnehmung zu schärfen und spürbar mehr Geschmeidigkeit aufzubauen. Durch die gezielte Stimulation des Bindegewebes entsteht Raum: für mehr Beweglichkeit, mehr Stabilität und für eine entspanntere, flüssigere Bewegung. Kurz gesagt: ein Training, das Ihr System heraufgefordert und Ihr Bewegungsmuster langfristig unterstützt.",
       icon: <Heart className="w-8 h-8" />,
@@ -300,14 +300,14 @@ function Home() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl mx-auto relative z-10 flex flex-col items-center mt-12"
           >
-            <h1 className="mb-8 flex flex-col">
+            <h1 className="mb-8 flex flex-col text-center">
               <span className="font-sans font-bold text-[32px] md:text-[41px] leading-tight tracking-tight text-white block mb-4 mt-6">Ihr Weg zu einem gesunden</span>
               <span className="font-serif italic text-[#C5A059] text-[42px] md:text-[69px] leading-[1.1] text-center block pr-4">Körper & Geist</span> 
-              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-sm md:text-xl block mt-8">in Radebeul</span>
+              <span className="font-sans font-bold uppercase tracking-widest text-[#8A9A5B] md:text-white/40 text-xs md:text-lg block mt-8">Faszientraining & Seniorensport · Radebeul Dresden</span>
             </h1>
             
-            <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-12 font-light px-6 py-2">
-              Ganzheitliche Prävention, Ernährungsberatung & Personal Training mit Lisa Prochnow.
+            <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-12 font-light px-6 py-2 text-center">
+              Ihr Spezialist für Faszientraining Radebeul Dresden & Seniorensport Radebeul Dresden. Ganzheitliche Prävention & Personal Training mit Lisa Prochnow.
             </p>
             
             <a href="#kontakt" className="btn-gold-solid px-12 py-5 rounded-none text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase transition-transform hover:scale-105">
@@ -647,7 +647,7 @@ function Home() {
               </h2>
               <p className="text-[#C5A059] text-xl font-bold uppercase tracking-widest max-w-xl mx-auto mb-6">Radebeul und Dresden</p>
               <p className="text-white/80 text-base font-light max-w-2xl mx-auto leading-relaxed">
-                Sie bekommen nicht nur ein Training &ndash; Sie bekommen Struktur, Begleitung und den Fortschritt, der zu Ihrem Alltag passt.
+                Professionelles Faszientraining Radebeul Dresden sowie Seniorensport Radebeul Dresden. Sie bekommen nicht nur ein Training &ndash; Sie bekommen Struktur, Begleitung und nachhaltigen Fortschritt.
               </p>
             </motion.div>
 
